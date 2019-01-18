@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import ScrollableAnchor, { configureAnchors, goToTop, goToAnchor } from 'react-scrollable-anchor';
 
 import { checkAuthenticated } from './actions/checkAuthenticated';
 
@@ -16,6 +15,9 @@ import styled from 'styled-components';
 const MainWrapper = styled.div`
   .top-nav {
     grid-area: Nav;
+    position: sticky;
+    top: 0;
+    background-color: white;
   }
 
   .side-nav {
@@ -30,32 +32,6 @@ const MainWrapper = styled.div`
     background-color: lightgreen;
   }
 
-  .anch {
-    height: 300px;
-  }
-
-  .one {
-    grid-area: One;
-    background-color: red;
-  }
-
-  .two {
-    grid-area: Two;
-    background-color: yellow;
-  }
-
-  .three {
-    grid-area: Three;
-    background-color: brown;
-  }
-
-  .four {
-    grid-area: Four;
-    background-color: blue;
-  }
-
-
-
   @media (max-width: 600px) {
     margin: 0 auto;
     display: grid;
@@ -65,10 +41,6 @@ const MainWrapper = styled.div`
     "Nav"
     "Main"
     "Side"
-    "One"
-    "Two"
-    "Three"
-    "Four"
   }
 
   @media (max-width: 600px) {
@@ -85,10 +57,6 @@ const MainWrapper = styled.div`
     grid-template-areas: 
     "Nav Nav"
     "Side Main"
-    "One One"
-    "Two Two"
-    "Three Three"
-    "Four Four"
   }
 `;
 
@@ -96,10 +64,6 @@ class App extends Component {
 
   componentDidMount(){
     this.props.auth.isAuthenticated() ? this.props.checkAuthenticated() : null
-  }
-
-  componentWillMount() {
-    configureAnchors({offset: -5, scrollDuration: 1500})
   }
 
   render() {
@@ -126,35 +90,10 @@ class App extends Component {
           <NavBar auth={this.props.auth} mainComponent={mainComponent} />
         </div>
         <div className="side-nav">
-          <a href='#one'>section 1</a>
-          <a href='#two'>section 2</a> 
-          <a href='#three'>section 3</a>
-          <a href='#four'>section 4</a> 
+          Side Nav
         </div>
         <div className="main">
           {this.props.children}
-        </div>
-        <div className="one anch"> 
-          <ScrollableAnchor id={"one"} >
-            <div>One</div>
-          </ScrollableAnchor>
-        </div>
-        <div className="two anch"> 
-          <ScrollableAnchor id={"two"}>
-            <div>Two</div>
-          </ScrollableAnchor>
-        </div>
-        <div className="three anch"> 
-          <ScrollableAnchor id={"three"}>
-            <div>Three</div>
-          </ScrollableAnchor>
-        </div>
-        <div className="four anch"> 
-          <ScrollableAnchor id={"four"}>
-            <div>Four</div>
-          </ScrollableAnchor>
-          {/* <div onClick={goToTop}> Top </div> */}
-          {/* <div onClick={() => goToAnchor("one")}> Anchor One </div> */}
         </div>
       </MainWrapper>
     )
