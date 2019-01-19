@@ -13,7 +13,7 @@ const MainWrapper = styled.div`
   }
 
   .anch {
-    height: 300px;
+    height: 500px;
     margin: 5px 0px;
     padding: 5px;
   }
