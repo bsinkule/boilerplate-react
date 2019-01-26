@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+
+import goalPNG from '../static/images/001-goal.png';
 
 const Home = () => {
   return (
     <div>
-      Home    
+      Home   
+      <img src={goalPNG} /> 
     </div>
   )
 }
