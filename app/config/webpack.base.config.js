@@ -16,7 +16,7 @@ module.exports = env => {
         module: {
           rules: [
             {
-              test: /\.(png|jpg|gif)$/,
+              test: /\.(png|jpg|gif|svg)$/,
               use: [
                 {
                   loader: 'file-loader',
@@ -34,7 +34,7 @@ module.exports = env => {
               }
             },
             {
-              test: /\.scss$/,
+              test: /\.s?css$/,
               use: [
                 PLATFORM === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
                 'css-loader',

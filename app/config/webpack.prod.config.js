@@ -2,7 +2,7 @@ const merge = require('webpack-merge');
 // Plugins
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
 // Configs
 const baseConfig = require('./webpack.base.config');
@@ -21,7 +21,7 @@ const prodConfiguration = env => {
             }
           }
         },
-        minimizer: [new UglifyJsPlugin()],
+        minimizer: [new TerserPlugin()],
       },
       plugins: [
         new MiniCssExtractPlugin(),
